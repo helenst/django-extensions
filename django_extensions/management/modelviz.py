@@ -21,9 +21,10 @@ from django.utils.safestring import mark_safe
 from django.utils.translation import activate as activate_language
 
 try:
-    from django.db.models.fields.generic import GenericRelation
-    assert GenericRelation
+    # For Django >= 1.7
+    from django.contrib.contenttypes.fields import GenericRelation
 except ImportError:
+    # For pre-1.7 versions
     from django.contrib.contenttypes.generic import GenericRelation
 
 from django_extensions.compat import get_apps
